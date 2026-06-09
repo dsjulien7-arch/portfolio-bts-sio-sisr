@@ -23,6 +23,7 @@ if (brandMark) {
   brandMark.textContent = portfolioConfig.initials;
 }
 
+/* ── Navigation mobile ── */
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 
@@ -42,6 +43,7 @@ if (navToggle && siteNav) {
   });
 }
 
+/* ── Reveal au scroll ── */
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -51,12 +53,13 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.15 }
+  { threshold: 0.12 }
 );
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
 
-const filters = document.querySelectorAll(".filter");
+/* ── Filtres Projets ── */
+const filters = document.querySelectorAll(".filter[data-filter]");
 const projects = document.querySelectorAll(".project-card");
 
 filters.forEach((filter) => {
@@ -74,6 +77,26 @@ filters.forEach((filter) => {
   });
 });
 
+/* ── Filtres Documentation ── */
+const docFilters = document.querySelectorAll(".filter[data-doc-filter]");
+const docCards = document.querySelectorAll(".doc-card");
+
+docFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    const selected = filter.dataset.docFilter;
+
+    docFilters.forEach((btn) => btn.classList.remove("is-active"));
+    filter.classList.add("is-active");
+
+    docCards.forEach((card) => {
+      const cat = card.dataset.docCategory;
+      const shouldShow = selected === "all" || cat === selected;
+      card.classList.toggle("is-doc-hidden", !shouldShow);
+    });
+  });
+});
+
+/* ── Glow curseur ── */
 const cursorGlow = document.querySelector(".cursor-glow");
 if (cursorGlow && window.matchMedia("(pointer: fine)").matches) {
   window.addEventListener("pointermove", (event) => {
