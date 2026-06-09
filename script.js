@@ -1,8 +1,8 @@
 const portfolioConfig = {
   name: "Julien",
   initials: "JS",
-  githubUrl: "https://github.com/ton-pseudo",
-  githubLabel: "github.com/ton-pseudo"
+  githubUrl: "https://github.com/dsjulien7-arch",
+  githubLabel: "github.com/dsjulien7-arch"
 };
 
 const year = document.querySelector("#year");
